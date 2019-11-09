@@ -1,0 +1,103 @@
+
+// 使用数组实现循环双端队列
+// https://leetcode-cn.com/problems/design-circular-deque/
+public class MyCircularDeque {
+    int[] myqueue ;
+    int front;//队头指针
+    int rear;//队尾指针
+    int size;//队列当前的大小
+    int capacity;//队列的容量
+
+    /** Initialize your data structure here. Set the size of the deque to be k. */
+    public MyCircularDeque(int k) {
+        this.myqueue = new int[k];
+        this.front = 0;
+        this.rear = 0;
+        this.size = 0;
+        this.capacity = k;
+    }
+
+    /** Adds an item at the front of Deque. Return true if the operation is successful. */
+    public boolean insertFront(int value) {
+        if(rear==front && size == capacity) return  false;//如果队列满，插入失败
+        else {
+            front = (front + capacity -1)% capacity;
+            myqueue[front] = value;
+            size++;
+            return true;
+        }
+    }
+
+    /** Adds an item at the rear of Deque. Return true if the operation is successful. */
+    public boolean insertLast(int value) {
+        if(rear==front && size == capacity) return  false;//如果队列满，插入失败
+        else {
+            myqueue[rear] = value;
+            rear = (rear+1+capacity)%capacity;
+            size++;
+            return true;
+        }
+
+    }
+
+    /** Deletes an item from the front of Deque. Return true if the operation is successful. */
+    public boolean deleteFront() {
+        if( rear == front && size == 0) return false;
+        else {
+            front = (front+1) % capacity;
+            size--;
+            return true;
+        }
+
+    }
+
+    /** Deletes an item from the rear of Deque. Return true if the operation is successful. */
+    public boolean deleteLast() {
+        if( rear == front && size == 0) return false;
+        else {
+            rear = (rear - 1 + capacity) % capacity;
+            size--;
+            return true;
+        }
+
+    }
+
+    /** Get the front item from the deque. */
+    public int getFront() {
+        if((rear == front) && size==0) return -1;
+        else {
+            int frontE = myqueue[front];
+            //front = (front + 1) % capacity;
+            //size--;
+            return frontE;
+        }
+    }
+
+    /** Get the last item from the deque. */
+    public int getRear() {
+        if((rear == front) && size==0) return -1;
+        else {
+            int rearE = myqueue[(rear-1+capacity)%capacity];
+           // rear = (rear - 1 +capacity)%capacity;
+            //size--;
+            return rearE;
+        }
+
+    }
+
+    /** Checks whether the circular deque is empty or not. */
+    public boolean isEmpty() {
+        return (rear == front) && size==0;
+    }
+
+    /** Checks whether the circular deque is full or not. */
+    public boolean isFull() {
+        return rear==front && size == capacity;
+
+    }
+}
+
+作者：VickieM
+链接：https://leetcode-cn.com/problems/design-circular-deque/solution/shi-yong-shu-zu-shi-xian-shuang-duan-dui-lie-by-ma/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
