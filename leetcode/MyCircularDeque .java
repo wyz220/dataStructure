@@ -97,7 +97,3 @@ public class MyCircularDeque {
     }
 }
 
-作者：VickieM
-链接：https://leetcode-cn.com/problems/design-circular-deque/solution/shi-yong-shu-zu-shi-xian-shuang-duan-dui-lie-by-ma/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
